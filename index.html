@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="edulearn-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4F46E5" />
+
+    <!-- Primary meta -->
+    <title>EduLearn — Learn Skills. Build Your Future.</title>
+    <meta
+      name="description"
+      content="Learn skills. Build your future. High-quality online courses from expert instructors — learn at your own pace, earn certificates, and level up your career."
+    />
+    <meta name="author" content="EduLearn" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EduLearn" />
+    <meta property="og:title" content="EduLearn — Learn Skills. Build Your Future." />
+    <meta
+      property="og:description"
+      content="High-quality online courses from expert instructors. Learn at your own pace and earn certificates."
+    />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:url" content="https://bejewelled-panda-2d4110.netlify.app" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EduLearn — Learn Skills. Build Your Future." />
+    <meta
+      name="twitter:description"
+      content="High-quality online courses from expert instructors. Learn at your own pace and earn certificates."
+    />
+    <meta name="twitter:image" content="/og-image.jpg" />
+
+    <!--
+      Theme bootstrap: read persisted theme from localStorage BEFORE the
+      React bundle loads, so there's no flash of the wrong theme.
+    -->
+    <script>
+      (function () {
+        try {
+          const stored = localStorage.getItem('edulearn.theme')
+          const systemDark = window.matchMedia(
+            '(prefers-color-scheme: dark)',
+          ).matches
+          let theme
+          if (stored === 'dark') theme = 'edulearn-dark'
+          else if (stored === 'light') theme = 'edulearn-light'
+          else theme = systemDark ? 'edulearn-dark' : 'edulearn-light'
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch (e) {
+          document.documentElement.setAttribute(
+            'data-theme',
+            'edulearn-light',
+          )
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

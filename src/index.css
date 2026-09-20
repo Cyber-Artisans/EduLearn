@@ -1,0 +1,297 @@
+@import "tailwindcss";
+@import "./assets/fonts.css";
+
+/* ------------------------------------------------------------------ */
+/*  DaisyUI plugin — register custom themes                            */
+/* ------------------------------------------------------------------ */
+@plugin "daisyui" {
+  themes: edulearn-light --default, edulearn-dark --prefersdark;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Custom themes                                                      */
+/*  DaisyUI v5 reads these via the "theme" plugin below.               */
+/* ------------------------------------------------------------------ */
+@plugin "daisyui/theme" {
+  name: "edulearn-light";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: oklch(100% 0 0);
+  /* #FFFFFF */
+  --color-base-200: oklch(98% 0.003 250);
+  /* #F8FAFC */
+  --color-base-300: oklch(93% 0.008 250);
+  /* #E2E8F0 */
+  --color-base-content: oklch(20% 0.02 260);
+  /* #1E293B */
+
+  --color-primary: oklch(55% 0.22 275);
+  /* #4F46E5 indigo-600 */
+  --color-primary-content: oklch(100% 0 0);
+
+  --color-secondary: oklch(70% 0.15 230);
+  /* #0EA5E9 sky-500 */
+  --color-secondary-content: oklch(100% 0 0);
+
+  --color-accent: oklch(78% 0.16 75);
+  /* #F59E0B amber-500 */
+  --color-accent-content: oklch(20% 0.02 260);
+
+  --color-neutral: oklch(28% 0.02 260);
+  /* #1E293B slate-800 */
+  --color-neutral-content: oklch(98% 0.003 250);
+
+  --color-info: oklch(72% 0.13 230);
+  --color-info-content: oklch(20% 0.02 260);
+
+  --color-success: oklch(72% 0.16 160);
+  /* #10B981 emerald-500 */
+  --color-success-content: oklch(100% 0 0);
+
+  --color-warning: oklch(80% 0.15 85);
+  /* #F59E0B amber-500 */
+  --color-warning-content: oklch(20% 0.02 260);
+
+  --color-error: oklch(65% 0.22 25);
+  /* #EF4444 red-500 */
+  --color-error-content: oklch(100% 0 0);
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "edulearn-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: oklch(20% 0.02 260);
+  /* #1E293B slate-800 */
+  --color-base-200: oklch(17% 0.02 260);
+  /* #0F172A slate-900 */
+  --color-base-300: oklch(28% 0.02 260);
+  /* #334155 slate-700 */
+  --color-base-content: oklch(96% 0.005 250);
+  /* #F1F5F9 slate-100 */
+
+  --color-primary: oklch(68% 0.18 275);
+  /* lighter indigo for dark */
+  --color-primary-content: oklch(15% 0.02 260);
+
+  --color-secondary: oklch(75% 0.14 230);
+  --color-secondary-content: oklch(15% 0.02 260);
+
+  --color-accent: oklch(82% 0.14 75);
+  --color-accent-content: oklch(15% 0.02 260);
+
+  --color-neutral: oklch(28% 0.02 260);
+  --color-neutral-content: oklch(96% 0.005 250);
+
+  --color-info: oklch(75% 0.12 230);
+  --color-info-content: oklch(15% 0.02 260);
+
+  --color-success: oklch(75% 0.15 160);
+  --color-success-content: oklch(15% 0.02 260);
+
+  --color-warning: oklch(82% 0.14 85);
+  --color-warning-content: oklch(15% 0.02 260);
+
+  --color-error: oklch(70% 0.20 25);
+  --color-error-content: oklch(15% 0.02 260);
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Bind Tailwind's dark: variant to DaisyUI's data-theme             */
+/* ------------------------------------------------------------------ */
+@custom-variant dark (&:where([data-theme=edulearn-dark], [data-theme=edulearn-dark] *));
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens exposed to Tailwind utilities                        */
+/*  These give us classes like text-balance, container-page, etc.      */
+/* ------------------------------------------------------------------ */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  --shadow-card-hover: 0 10px 25px -5px rgb(0 0 0 / 0.10), 0 8px 10px -6px rgb(0 0 0 / 0.10);
+
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.4s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Global base layer                                                  */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-base-100 text-base-content;
+    min-height: 100vh;
+  }
+
+  /* Accessible focus ring — respects keyboard-only navigation */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  /* Remove default focus ring on mouse clicks */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Better default headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-primary-content);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Reusable utility classes                                           */
+/* ------------------------------------------------------------------ */
+@layer components {
+
+  /* Page container — centered, responsive padding */
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section vertical spacing */
+  .section-y {
+    @apply py-16 md:py-24;
+  }
+
+  /* Card base */
+  .card-edulearn {
+    @apply rounded-2xl border border-base-300 bg-base-100 p-6 transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-edulearn:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Gradient text for hero headings */
+  .text-gradient {
+    @apply bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Respect reduced motion                                             */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Print styles for certificates                                      */
+/* ------------------------------------------------------------------ */
+@media print {
+
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Only the certificate is visible */
+  #certificate,
+  #certificate * {
+    visibility: visible;
+  }
+
+  #certificate {
+    position: absolute;
+    inset: 0;
+    margin: 0 auto;
+    border-color: #4F46E5 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+
+  /* Hide chrome */
+  header,
+  footer,
+  nav,
+  aside {
+    display: none !important;
+  }
+
+  /* Ensure background colors print (some browsers strip them by default) */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    margin: 0.5in;
+    size: landscape;
+  }
+}
