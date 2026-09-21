@@ -16,7 +16,7 @@ interface BuilderModuleCardProps {
   module: Module
   onUpdate: (patch: Partial<Module>) => void
   onDelete: () => void
-  onAddLesson: () => void
+  onAddLesson: (title: string, duration: number) => void
   onUpdateLesson: (lessonId: string, patch: Partial<Lesson>) => void
   onDeleteLesson: (lessonId: string) => void
   onMoveLesson: (lessonId: string, direction: 'up' | 'down') => void
@@ -47,7 +47,7 @@ export function BuilderModuleCard({
 
   function commitNewLesson() {
     if (!newLessonTitle.trim()) return
-    onAddLesson()
+    onAddLesson(newLessonTitle.trim(), Math.max(1, newLessonDuration))
     setNewLessonTitle('')
     setNewLessonDuration(10)
     setAddingLesson(false)
@@ -61,7 +61,7 @@ export function BuilderModuleCard({
   return (
     <div className="card-edulearn p-0! overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-2 p-4 border-b border-base-300">
+      <div className="flex items-center gap-2 p-4 border-b border-base-300 flex-wrap">
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -76,7 +76,7 @@ export function BuilderModuleCard({
         </span>
 
         {editingTitle ? (
-          <div className="flex-1 flex items-center gap-2">
+          <div className="flex-1 flex items-center gap-2 min-w-50">
             <input
               type="text"
               value={draftTitle}
@@ -112,7 +112,7 @@ export function BuilderModuleCard({
           <button
             type="button"
             onClick={() => setEditingTitle(true)}
-            className="flex-1 text-left font-semibold hover:text-primary transition-colors"
+            className="flex-1 text-left font-semibold hover:text-primary transition-colors min-w-0 truncate"
           >
             {module.title}
           </button>
@@ -242,7 +242,7 @@ export function BuilderModuleCard({
 
       {/* Delete confirmation */}
       {confirmDelete && (
-        <div className="alert alert-warning rounded-none flex justify-between">
+        <div className="alert alert-warning rounded-none flex justify-between flex-wrap gap-2">
           <span className="text-sm">
             Delete this module and all its lessons?
           </span>
