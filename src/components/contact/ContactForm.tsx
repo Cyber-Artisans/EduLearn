@@ -58,13 +58,20 @@ export function ContactForm() {
     if (!validate()) return
     setSubmitting(true)
     setErrors({})
-    // Mock submit — no backend yet. Simulate network + success.
     try {
-      await new Promise((resolve) => setTimeout(resolve, 900))
-      setSubmitted(true)
-      setForm(initialForm)
+      const response = await fetch("https://formspree.io/f/myezwzbo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      })
+      if (response.ok) {
+        setSubmitted(true)
+        setForm(initialForm)
+      } else {
+        setErrors({ general: "Something went wrong. Please try again." })
+      }
     } catch {
-      setErrors({ general: 'Something went wrong. Please try again.' })
+      setErrors({ general: "Network error. Please try again." })
     } finally {
       setSubmitting(false)
     }

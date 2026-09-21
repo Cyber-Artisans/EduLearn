@@ -26,11 +26,22 @@ function AppShell() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <AppShell />
-      </AuthProvider>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <AuthProvider>
+          <AppShell />
+        </AuthProvider>
+      </BrowserRouter>
+
+      <div>
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <i className="fa-regular fa-circle-up 
+            fixed bottom-6 right-6 text-blue-900 text-5xl px-4 py-2 hover:text-blue-800 transition"></i>
+        </button>
+      </div>
+    </>  
   )
 }
 
