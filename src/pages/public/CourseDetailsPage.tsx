@@ -77,7 +77,9 @@ export default function CourseDetailsPage() {
             />
           </div>
 
-          <EnrollmentCard course={course} />
+          <div className='sticky top-24'>
+            <EnrollmentCard course={course} />
+          </div>
         </div>
       </Container>
     </>
